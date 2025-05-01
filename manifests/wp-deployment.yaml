@@ -60,26 +60,26 @@ spec:
         # mount non-sensitive environment vars from configmap ref
         # WORDPRESS_DB_HOST | WORDPRESS_DB_USER
         ##
-          - name: WORDPRESS_DB_HOST
-            valueFrom:
-              configMapKeyRef:
-                name: wordpress
-                key: host
-          - name: WORDPRESS_DB_USER
-            valueFrom:
-              configMapKeyRef:
-                name: wordpress
-                key: user
+        - name: WORDPRESS_DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: wordpress
+              key: host
+        - name: WORDPRESS_DB_USER
+          valueFrom:
+            configMapKeyRef:
+              name: wordpress
+              key: user
 
         ##
         # mount sensitive environment vars from secret ref
         # WORDPRESS_DB_PASSWORD (hint use the user-password key)
         ##
-          - name: WORDPRESS_DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: database
-                  key: user-password
+        - name: WORDPRESS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: database
+              key: user-password
         ports:
         - containerPort: 80
           name: wordpress
